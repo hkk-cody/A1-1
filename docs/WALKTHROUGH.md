@@ -22,18 +22,18 @@ A1-1/
 
 ```mermaid
 flowchart TD
-    S0[0. 환경 준비] --> S1[1. 데이터셋 선정]
-    S1 --> S2[2. DataAnalyzer 뼈대 + load_data]
-    S2 --> S3[3. 기본 탐색과 해석]
-    S3 --> S4[4. 이미지 피처]
-    S4 --> S5[5. 텍스트 피처]
-    S5 --> S6[6. 결측치 그룹 대치]
-    S6 --> S7[7. IQR 이상치]
-    S7 --> S8[8. 통계 분석]
-    S8 --> S9[9. 시각화 6종 점검]
-    S9 --> S10[10. RFM 세분화]
-    S10 --> S11[11. README 인사이트]
-    S11 --> S12[12. 제출 전 자기 점검]
+    S0[0단계 환경 준비] --> S1[1단계 데이터셋 선정]
+    S1 --> S2[2단계 DataAnalyzer 뼈대 + load_data]
+    S2 --> S3[3단계 기본 탐색과 해석]
+    S3 --> S4[4단계 이미지 피처]
+    S4 --> S5[5단계 텍스트 피처]
+    S5 --> S6[6단계 결측치 그룹 대치]
+    S6 --> S7[7단계 IQR 이상치]
+    S7 --> S8[8단계 통계 분석]
+    S8 --> S9[9단계 시각화 6종 점검]
+    S9 --> S10[10단계 RFM 세분화]
+    S10 --> S11[11단계 README 인사이트]
+    S11 --> S12[12단계 제출 전 자기 점검]
 ```
 
 예상 시간 배분(학습시간 60시간 기준, 참고용): 데이터 선정·이해 10시간, 파이프라인·전처리 20시간, 통계·시각화 12시간, RFM 10시간, README·정리 8시간.
@@ -67,7 +67,7 @@ pip install numpy pandas matplotlib seaborn jupyter
 **확인 방법**
 
 - `python -c "import numpy, pandas, matplotlib, seaborn; print('ok')"`가 `ok`를 출력한다.
-- `pip list`에 opencv, pillow를 직접 설치하지 않았다(Matplotlib가 의존성으로 Pillow를 깔 수는 있지만, 코드에서 `import PIL`을 하지 않으면 된다).
+- `pip list`에 opencv, pillow를 직접 설치하지 않았다(Matplotlib는 필수 의존성으로 Pillow를 함께 설치하므로 `pip list`에 보이는 것은 정상이다. 코드에서 `import PIL`을 하지 않으면 된다).
 
 ---
 
@@ -273,7 +273,7 @@ small = imgs[:, ::2, ::2]            # 배치 전체를 한 번에 다운샘플�
 **확인 방법**
 
 - 함수가 돌려준 경계값을 손계산(Q1, Q3를 `quantile`로 출력해 직접 계산)과 비교해 일치한다.
-- `threshold=1.5`와 `threshold=3.0`으로 호출했을 때 이상치 수가 달라진다(3.0이 더 적어야 정상).
+- `threshold=1.5`와 `threshold=3.0`으로 호출했을 때 3.0일 때의 이상치 수가 1.5일 때보다 같거나 적다(더 많으면 경계 계산이 잘못된 것이다).
 - 처리 전후 박스플롯에 제목과 축 레이블이 있다.
 
 ---
