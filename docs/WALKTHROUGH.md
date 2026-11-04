@@ -40,34 +40,39 @@ flowchart TD
 
 ---
 
-## 0단계. 환경 준비
+## 0단계. 환경 준비 (uv 사용)
 
-**목표**: 허용 라이브러리만 설치된 깨끗한 실습 환경을 만든다.
+**목표**: 패키지 관리자 `uv`를 활용하여 허용 라이브러리만 설치된 깨끗한 실습 환경을 만든다.
 
 **할 일**
 
-1. Python 버전을 확인한다(3.8 이상).
-2. 프로젝트 폴더에 가상환경을 만들고 활성화한다.
+1. `uv` 설치 및 Python 버전을 확인한다(3.8 이상).
+2. 프로젝트 폴더에 가상환경(`.venv`)을 만들고 활성화한다.
 3. NumPy, Pandas, Matplotlib, Seaborn과 노트북 실행 도구(Jupyter)를 설치한다.
 4. 위 구조대로 `src/`, `notebooks/` 폴더를 만든다.
 
 **힌트**
 
 ```bash
-python3 --version
-python3 -m venv .venv
+# 1. uv 설치 확인 (미설치 시: brew install uv 또는 curl -LsSf https://astral.sh/uv/install.sh | sh)
+uv --version
+
+# 2. 가상환경 생성 및 활성화
+uv venv .venv
 source .venv/bin/activate
-pip install numpy pandas matplotlib seaborn jupyter
+
+# 3. 필수 라이브러리 설치
+uv pip install numpy pandas matplotlib seaborn jupyter
 ```
 
-- (권장) `pip freeze > requirements.txt`로 설치 목록을 남기면 README의 실행 방법을 쓰기 쉽다.
+- (권장) `uv pip freeze > requirements.txt`로 설치 목록을 남기면 README의 실행 방법을 쓰기 쉽다.
 - (권장) `.gitignore`에 `.venv/`, `.ipynb_checkpoints/`를 넣는다.
 - 보너스 3을 할 계획이 없다면 Plotly는 설치하지 않는다. 실수로 본 과제에 쓰는 것을 막을 수 있다.
 
 **확인 방법**
 
 - `python -c "import numpy, pandas, matplotlib, seaborn; print('ok')"`가 `ok`를 출력한다.
-- `pip list`에 opencv, pillow를 직접 설치하지 않았다(Matplotlib는 필수 의존성으로 Pillow를 함께 설치하므로 `pip list`에 보이는 것은 정상이다. 코드에서 `import PIL`을 하지 않으면 된다).
+- `uv pip list`에 opencv, pillow를 직접 설치하지 않았다(Matplotlib는 필수 의존성으로 Pillow를 함께 설치하므로 `uv pip list`에 보이는 것은 정상이다. 코드에서 `import PIL`을 하지 않으면 된다).
 
 ---
 

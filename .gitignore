@@ -1,0 +1,16 @@
+# 가상환경
+.venv/
+
+# 파이썬 캐시
+__pycache__/
+*.pyc
+
+# 주피터 노트북
+.ipynb_checkpoints/
+
+# 도구 및 스킬
+skills/
+
+# OS 파일
+.DS_Store
+Thumbs.db
