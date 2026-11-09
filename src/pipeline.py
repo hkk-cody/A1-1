@@ -171,9 +171,9 @@ class DataAnalyzer:
         conditions = [
             # 1. VIP : 총점 10점 이상이면서 반드시 2회 이상 재구매한 최상위 핵심 단골
             (rfm["rfm_score"] >= 10) & (rfm["frequency"] >= 2),
-            # 2. Loyal : 총점 8점 이상이면서 반드시 2회 이상 재구매한 단골
+            # 2. Loyal : 2회 이상 재구매했거나 총점 8점 이상인 우수 충성 고객
             (rfm["frequency"] >= 2) | (rfm["rfm_score"] >= 8),
-            # 3. New : 총점 3점 이상이면서 재구매가 없는 신규 고객
+            # 3. New : 최근성 점수(r_score) 3점 이상이면서 첫 구매(1회)인 신규 고객
             (rfm["frequency"] == 1) & (rfm["r_score"] >= 3),
         ]
         choices = ["VIP", "Loyal", "New"]
